@@ -1,0 +1,28 @@
+server:
+  port: 7900
+spring:
+  application:
+    name: micro-service-user
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: h2
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.itmuch: DEBUG
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://localhost:8761/eureka/ #配置访问Eureka的地址  8761为Eureka的默认端口
+  instances:
+    prefer-ip-address:  true  #配置IP默认为false，不显示IP地址
+    instance-id:  ${spring.application.name}:${spring.application.instance_id:${instance.port}} #配置Eureka中的Status显示格式。${}代表引用springboot中的相应配置名称

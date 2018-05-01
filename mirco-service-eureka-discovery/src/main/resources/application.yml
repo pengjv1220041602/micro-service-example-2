@@ -1,0 +1,17 @@
+server:
+  port: 8761 #配置Eureka的服务端口号
+
+security:  #安全中心
+  basic:
+    enabled: true  #启用安全中心
+  user:            #配置用户名和密码
+    name: admin
+    password: admin
+eureka:          #Eureka的客户端
+  client:
+    healthcheck:
+      enable: true   #健康检查 
+    register-with-eureka: false   #Eureka默认服务也是一个客户端，这个是否把自己当成一个客户端，选择false不把自己当成客户端
+    fetch-registry: false     #同上结合
+    service-url:     #Eureka的地址
+      defaulttZone: http://localhost:8761/eureka
